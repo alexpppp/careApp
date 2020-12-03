@@ -5,8 +5,6 @@ import {loginError, registerUserRequest} from '../actions/auth'
 class Register extends React.Component {
   state = {
     username: '',
-    first_name: '',
-    last_name: '',
     password: '',
     confirm_password: ''
   }
@@ -22,10 +20,10 @@ class Register extends React.Component {
   handleSubmit = (e) => {
     e.preventDefault()
     e.target.reset()
-    let {username, password, confirm_password, first_name, last_name} = this.state
+    let {username, password, confirm_password} = this.state
     if (confirm_password != password) return this.props.dispatch(loginError("Passwords don't match"))
     const confirmSuccess = () => { this.props.history.push('/') }
-    this.props.dispatch(registerUserRequest({username, password, first_name, last_name}, confirmSuccess))
+    this.props.dispatch(registerUserRequest({username, password}, confirmSuccess))
   }
 
   render() {
@@ -38,14 +36,6 @@ class Register extends React.Component {
         <label className="column is-6 is-offset-one-quarter label is-large has-text-centered">Username
           <input required className="input is-large has-text-centered is-fullwidth" placeholder="User Name" type="text" name="username" autoComplete="username" onChange={this.handleChange} value={this.state.username}/>
         </label>
-        <div className="columns">
-          <label className="column is-6 label is-large has-text-centered">First Name
-            <input required className="input is-large has-text-centered is-fullwidth" placeholder="First Name" type="text" name="first_name" onChange={this.handleChange} value={this.state.first_name}/>
-          </label>
-          <label className="column is-6 label is-large has-text-centered">Last Name
-            <input required className="input is-large has-text-centered is-fullwidth" placeholder="Last Name" type="text" name="last_name" onChange={this.handleChange} value={this.state.last_name}/>
-          </label>
-        </div>
         <br />
         <div className="columns">
           <label className="column is-6 label is-large has-text-centered">Password
