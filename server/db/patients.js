@@ -4,15 +4,10 @@ function getAllPatients (db = connection) {
   return db('patients').select()
 }
 
-function getPatientById (id, db = connection) {
+function getPatientAndNotesById (id, db = connection) {
   return db('patients')
-    .where('id', id)
-    .first()
-}
-
-function getPatientNotes (patient_id, db = connection) {
-  return db('notes')
-    .where('patient_id', patient_id)
+    .join('notes', 'notes.patient_id', 'patients.id')
+    .where('patients.id', id)
     .select()
 }
 
@@ -28,8 +23,7 @@ function addNote (entry, db = connection) {
 
 module.exports = {
   getAllPatients,
-  getPatientById,
-  getPatientNotes,
+  getPatientAndNotesById,
   addPatient,
   addNote
 }
