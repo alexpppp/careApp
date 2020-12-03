@@ -2,6 +2,7 @@ import React from 'react'
 import {HashRouter as Router, Route, Link} from 'react-router-dom'
 import {connect} from 'react-redux'
 
+import Patients from './Patients'
 import Login from './Login'
 import Register from './Register'
 import Nav from './Nav'
@@ -29,6 +30,11 @@ export class App extends React.Component {
           </div>
 
           <div className=''>
+            {auth.isAuthenticated && (
+              <>
+                <Route exact path="/" component={Patients} />
+              </>
+            )}
             {!auth.isAuthenticated &&
               <Route exact path="/" component={Login} />
             }
