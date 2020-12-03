@@ -53,6 +53,7 @@
     "webpack-cli": "^3.3.12"
   },
   "dependencies": {
+    "bootstrap": "^4.5.3",
     "css-loader": "^3.6.0",
     "dotenv": "^8.2.0",
     "dotenv-webpack": "^1.8.0",

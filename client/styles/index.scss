@@ -6,6 +6,7 @@
 // Import custom variables and Bulma overides
 @import "./variables.scss";
 
+@import "../../node_modules/bootstrap/dist/css/bootstrap.min.css";
 
 // Fix for transparent background on active nav items
 a.navbar-item:focus, a.navbar-item:focus-within, a.navbar-item:hover, a.navbar-item.is-active, .navbar-link:focus, .navbar-link:focus-within, .navbar-link:hover, .navbar-link.is-active {
