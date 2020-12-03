@@ -9,8 +9,8 @@ exports.seed = function (knex) {
         [
           {
             id: 1,
-            username: 'admin',
-            password: 'Krang',
+            username: 'alex',
+            password: 'alex',
           }
         ].map(user => {
           return generateHash(user.password)
