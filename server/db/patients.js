@@ -4,26 +4,36 @@ function getAllPatients (db = connection) {
   return db('patients').select()
 }
 
-function getPatientAndNotesById (id, db = connection) {
+function getPatientById (id, db = connection) {
   return db('patients')
-    .join('notes', 'notes.patient_id', 'patients.id')
-    .where('patients.id', id)
-    .select()
+    .where('id', id)
+    .first()
+}
+
+function getPatientNotes (id, db = connection) {
+  return db('notes')
+    .join('users', 'notes.author_id', '=', 'users.id')
+    .where('notes.patient_id', id)
+    .select('*', 'notes.id AS id')
 }
 
 function addPatient (entry, db = connection) {
-  return db('patients')
-  .insert(entry)
+return
+}
+
+function updatePatient (id, entry, db = connection) {
+return
 }
 
 function addNote (entry, db = connection) {
-    return db('notes')
-    .insert(entry)
+return
   }
 
 module.exports = {
   getAllPatients,
-  getPatientAndNotesById,
+  getPatientById,
+  getPatientNotes,
   addPatient,
+  updatePatient,
   addNote
 }
