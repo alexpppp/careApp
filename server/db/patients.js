@@ -18,15 +18,19 @@ function getPatientNotes (id, db = connection) {
 }
 
 function addPatient (entry, db = connection) {
-return
+  return db('patients')
+  .insert(entry)
 }
 
 function updatePatient (id, entry, db = connection) {
-return
+  return db('patients')
+    .where('id', id)
+    .update(entry)
 }
 
 function addNote (entry, db = connection) {
-return
+    return db('notes')
+    .insert(entry)
   }
 
 module.exports = {

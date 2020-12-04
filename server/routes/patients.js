@@ -68,15 +68,44 @@ function getPatientAndNotes(req, res) {
 }
 
 function addPatientEntry(req, res) {
-  return
+  const entry = {
+    first_name: req.body.firstName,
+    last_name: req.body.lastName,
+    nickname: req.body.nickName,
+    img: req.body.img,
+    birthdate: req.body.birthdate,
+    gender: req.body.gender,
+    phone: req.body.phone,
+    address: req.body.address
+  };
+  return addPatient(entry).then((count) => res.json(count[0]));
 }
 
 function updatePatientEntry(req, res) {
-  return
+  const id = req.params.id
+  const entry = {
+    first_name: req.body.firstName,
+    last_name: req.body.lastName,
+    nickname: req.body.nickName,
+    img: req.body.img,
+    birthdate: req.body.birthdate,
+    gender: req.body.gender,
+    phone: req.body.phone,
+    address: req.body.address
+  };
+  return updatePatient(id, entry).then(()=>{
+    res.redirect('/profile/' + id);
+  })
 }
 
 function addNoteEntry(req, res) {
-  return
+  const entry = {
+    title: req.body.title,
+    content: req.body.content,
+    author_id: req.body.authorId,
+    patient_id: req.body.patientId
+  };
+  return addNote(entry).then((count) => res.json(count[0]));
 }
 
 function errorHandler(err, req, res, next) {
