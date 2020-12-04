@@ -5,7 +5,7 @@ import {connect} from 'react-redux'
 import Patients from './Patients'
 import Login from './Login'
 import Register from './Register'
-import Nav from './Nav'
+import Home from './Home'
 import { checkAuth } from '../actions/auth'
 
 export class App extends React.Component {
@@ -18,31 +18,27 @@ export class App extends React.Component {
     const {auth} = this.props
     return (
       <Router>
-        <div className="container has-text-centered">
-
-          <div className="hero is-small is-primary">
-            <div className="hero-body has-text-centered">
-              <Link to='/' className="">
-                <h1 className="title is-1">Greetings!</h1>
-              </Link>
-              <Route path="/" component={Nav} />
-            </div>
-          </div>
-
-          <div className=''>
             {auth.isAuthenticated && (
               <>
                 <Route exact path="/" component={Patients} />
               </>
             )}
-            {!auth.isAuthenticated &&
-              <Route exact path="/" component={Login} />
-            }
-            <Route path="/login" component={Login} />
-            <Route path="/register" component={Register} />
-          </div>
-
-        </div>
+            {!auth.isAuthenticated && (
+              <>
+                <div className="m-3">
+                    <Link className="mt3" to='/'>Home</Link>
+                </div>
+                <div className="container has-text-centered">
+                  <div className="row justify-content-md-center">
+                    <div className="col-md-6">
+                      <Route exact path="/" component={Home} />
+                      <Route path="/login" component={Login} />
+                      <Route path="/register" component={Register} />
+                    </div>
+                  </div>
+                </div>
+              </>
+            )}
       </Router>
     )
   }
