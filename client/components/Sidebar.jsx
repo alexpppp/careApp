@@ -1,7 +1,7 @@
 import React from 'react'
 import { connect } from "react-redux";
-import { apiGetAllPatients } from '../apis'
-import { receivePatients } from '../actions'
+import { apiGetAllPatients, apiGetPatientById } from '../apis'
+import { receivePatients, receivePatient } from '../actions'
 
 class Sidebar extends React.Component {
     componentDidMount() {
@@ -10,7 +10,9 @@ class Sidebar extends React.Component {
         );
       }
     fetchPatient = (id) => {
-        console.log("fetch")
+        apiGetPatientById(id).then((patient) =>
+          this.props.dispatch(receivePatient(patient))
+        );
     }
     render() {
         return (

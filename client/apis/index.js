@@ -6,21 +6,26 @@ const apiUrl = "/api/v1/patients";
 
 function prepHeaders() {
     return {
-      Accept: "application/json",
-      Authorization: `Bearer ${getEncodedToken()}`,
+        Accept: "application/json",
+        Authorization: `Bearer ${getEncodedToken()}`,
     };
-  }
+}
 
 export function apiGetAllPatients() {
     return request
-      .get(apiUrl + "/")
-      .set(prepHeaders())
-      .then((res) => res.body)
-      .catch(errorHandler);
-  }
+        .get(apiUrl + "/")
+        .set(prepHeaders())
+        .then((res) => res.body)
+        .catch(errorHandler);
+}
 
-
-
+export function apiGetPatientById(id) {
+    return request
+        .get(apiUrl + "/" + id)
+        .set(prepHeaders())
+        .then((res) => res.body)
+        .catch(errorHandler);
+}
 
   // Global error handler for front end api's
 function errorHandler(err) {
