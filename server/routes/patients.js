@@ -15,7 +15,7 @@ const router = express.Router();
 router.get("/", getTokenDecoder(), getPatientList);
 router.get("/:id", getTokenDecoder(), getPatientAndNotes);
 router.post("/add", getTokenDecoder(), addPatientEntry);
-router.post("/edit/:id", getTokenDecoder(), updatePatientEntry);
+router.patch("/edit/:id", getTokenDecoder(), updatePatientEntry);
 router.post("/addnote", getTokenDecoder(), addNoteEntry);
 router.use(errorHandler);
 
@@ -26,7 +26,7 @@ function getPatientList(req, res) {
         id: patient.id,
         firstName: patient.first_name,
         lastName: patient.last_name,
-        nickName: patient.nickname,
+        nickname: patient.nickname,
         img: patient.img,
         birthdate: patient.birthdate,
         gender: patient.gender,
@@ -47,7 +47,7 @@ function getPatientAndNotes(req, res) {
         id: patient.id,
         firstName: patient.first_name,
         lastName: patient.last_name,
-        nickName: patient.nickname,
+        nickname: patient.nickname,
         img: patient.img,
         birthdate: patient.birthdate,
         gender: patient.gender,
@@ -72,7 +72,7 @@ function addPatientEntry(req, res) {
   const entry = {
     first_name: req.body.firstName,
     last_name: req.body.lastName,
-    nickname: req.body.nickName,
+    nickname: req.body.nickname,
     img: req.body.img,
     birthdate: req.body.birthdate,
     gender: req.body.gender,
@@ -87,15 +87,15 @@ function updatePatientEntry(req, res) {
   const entry = {
     first_name: req.body.firstName,
     last_name: req.body.lastName,
-    nickname: req.body.nickName,
+    nickname: req.body.nickname,
     img: req.body.img,
     birthdate: req.body.birthdate,
     gender: req.body.gender,
     phone: req.body.phone,
     address: req.body.address
   };
-  return updatePatient(id, entry).then(()=>{
-    res.redirect('/profile/' + id);
+  return updatePatient(id, entry).then((count)=>{
+    res.json(count[0])
   })
 }
 

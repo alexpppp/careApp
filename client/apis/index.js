@@ -27,6 +27,22 @@ export function apiGetPatientById(id) {
         .catch(errorHandler);
 }
 
+export function apiAddPatient(entry) {
+    return request
+        .post(apiUrl + "/add")
+        .set(prepHeaders())
+        .send(entry)
+        .then((res) => res.body);
+  }
+
+export function apiUpdatePatient(id, entry) {
+    return request
+        .patch(apiUrl + "/edit/" + id)
+        .set(prepHeaders())
+        .send(entry)
+        .then((res) => res.body);
+  }
+
   // Global error handler for front end api's
 function errorHandler(err) {
     console.error(err);
