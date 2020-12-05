@@ -9,6 +9,9 @@ class Sidebar extends React.Component {
           this.props.dispatch(receivePatients(patients))
         );
       }
+    fetchPatient = (id) => {
+        console.log("fetch")
+    }
     render() {
         return (
             <>
@@ -23,7 +26,13 @@ class Sidebar extends React.Component {
                     <input className="form-control form-control-borderless" style={{fontFamily: "Arial, FontAwesome"}} type="search" placeholder="&#xF002; Search"/>
                 </form>
                 <div className="sidebar-inner list-group">
-                    <a href="#" className="list-group-item bg-peachy"><img alt="" src="#" className="rounded-circle"/> Name LastName</a>
+                {this.props.patients.map((p) => {
+                    return (
+                        <div key={p.id}>
+                            <a href="#" onClick={() => this.fetchPatient(p.id)} className="list-group-item bg-peachy"><img alt={p.nickname} src={p.img} className="rounded-circle"/> {p.firstName} {p.lastName}</a>
+                        </div>
+                    );
+                })}
                 </div>
             </div>
             </>
@@ -32,7 +41,7 @@ class Sidebar extends React.Component {
 }
 
 function mapStateToProps(globalState) {
-    return { auth: globalState.auth, patients: globalState.patients };
+    return { patients: globalState.patients };
   }
   
   export default connect(mapStateToProps)(Sidebar);
