@@ -1,7 +1,10 @@
 import React from 'react'
 import { connect } from "react-redux"
+import Nav from './Nav'
 import Profile from './Profile'
 import Notes from './Notes'
+import {Link} from 'react-router-dom'
+import {logoutUser} from '../actions/auth'
 import { apiAddPatient, apiGetPatientById, apiGetAllPatients } from '../apis'
 import { receivePatient, receivePatients } from '../actions'
 
@@ -40,6 +43,7 @@ class Main extends React.Component {
         return (
             <>
             <div id="page-content-wrapper">
+                <Nav />
                 <div id="page-content-inner" className="d-flex flex-column">
                     {Object.keys(p).length === 0 ?
                     <div className="row m-3">

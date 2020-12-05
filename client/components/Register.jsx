@@ -34,7 +34,7 @@ class Register extends React.Component {
         <hr />
         {auth.errorMessage && <span>{auth.errorMessage}</span>}
         <div className="form-group">
-          <input required className="form-control" placeholder="User Name" type="text" name="username" autoComplete="username" onChange={this.handleChange} value={this.state.username}/>
+          <input required className="form-control" placeholder="Full Name (e.g. Joey Tribbiani)" type="text" name="username" autoComplete="username" onChange={this.handleChange} value={this.state.username}/>
         </div>
         <div className="form-group">
           <input required className="form-control" placeholder="Password" type="password" name="password"  autoComplete="new-password" onChange={this.handleChange} value={this.state.password}/>

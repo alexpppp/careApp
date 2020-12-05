@@ -7,11 +7,7 @@ exports.seed = function (knex) {
       // Inserts seed entries
       return Promise.all(
         [
-          {
-            id: 1,
-            username: 'alex',
-            password: 'alex',
-          }
+          {id: 1, username: 'Alex Procter', password: '123'}
         ].map(user => {
           return generateHash(user.password)
             .then(hash => {

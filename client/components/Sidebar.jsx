@@ -35,7 +35,7 @@ class Sidebar extends React.Component {
                 {[...this.props.patients].reverse().map((p) => {
                     return (
                         <div key={p.id}>
-                            <a href="#" onClick={() => this.fetchPatient(p.id)} className="list-group-item bg-peachy"><img alt={p.nickname} src={p.img} className="rounded-circle"/>{p.firstName} {p.lastName}</a>
+                            <a href="#" onClick={() => this.fetchPatient(p.id)} className="list-group-item bg-peachy"><img alt={p.nickname} src={p.img} className="rounded-circle"/><span>{p.firstName} {p.lastName}</span></a>
                         </div>
                     );
                 })}
