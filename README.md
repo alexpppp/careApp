@@ -15,6 +15,6 @@ cp .env.example .env
 ```sh
 npm run dev
 ```
+...and wait 5-10s for webpack to build.
 
-### Enjoy!
-Sing out if any questions.
+### Register a new user, and start managing patients. Enjoy!
