@@ -2,7 +2,14 @@
 
 ## To Run Locally
 
-* Install dependencies, run migrations, and run seeds.
+* Clone the repo locally, and change into the working directory
+
+```sh
+git clone https://github.com/alexpppp/careApp.git
+cd careApp
+```
+
+* Install dependencies, run migrations, run seeds, and make a working copy of the auth key.
 
 ```sh
 npm install
@@ -16,5 +23,7 @@ cp .env.example .env
 npm run dev
 ```
 ...and wait 5-10s for webpack to build.
+
+* Access the site at http://localhost:3000/#/
 
 ### Register a new user, and start managing patients. Enjoy!
