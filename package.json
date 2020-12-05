@@ -50,8 +50,7 @@
     "sqlite3": "^5.0.0",
     "supertest": "^4.0.2",
     "webpack": "^4.44.2",
-    "webpack-cli": "^3.3.12",
-    "html-webpack-plugin"
+    "webpack-cli": "^3.3.12"
   },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^1.2.32",
