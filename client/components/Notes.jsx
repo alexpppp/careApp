@@ -1,4 +1,5 @@
 import React from 'react'
+import { connect } from "react-redux"
 
 class Notes extends React.Component {
     render() {
@@ -20,27 +21,17 @@ class Notes extends React.Component {
                     <hr className="hr-or" />
                 </div>
                 <div className="d-flex flex-column">
-                    <div className="card m-3">
-                        <div className="card-body">
-                            <h5 className="card-title">Vascular arrythmia reported</h5>
-                            <h6 className="card-subtitle mb-2 text-muted">10 Dec 2020 | Dr A. Procter</h6>
-                            <p className="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                        </div>
-                    </div>
-                    <div className="card m-3">
-                        <div className="card-body">
-                            <h5 className="card-title">Vascular arrythmia reported</h5>
-                            <h6 className="card-subtitle mb-2 text-muted">10 Dec 2020 | Dr A. Procter</h6>
-                            <p className="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                        </div>
-                    </div>
-                    <div className="card m-3">
-                        <div className="card-body">
-                            <h5 className="card-title">Vascular arrythmia reported</h5>
-                            <h6 className="card-subtitle mb-2 text-muted">10 Dec 2020 | Dr A. Procter</h6>
-                            <p className="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                        </div>
-                    </div>
+                    {this.props.patientDetails.notes && this.props.patientDetails.notes.map((note) => {
+                        return (
+                            <div key={note.id} className="card m-3">
+                                <div className="card-body">
+                                    <h5 className="card-title">{note.title}</h5>
+                                    <h6 className="card-subtitle mb-2 text-muted">{note.date} | Dr {note.author}</h6>
+                                    <p className="card-text">{note.content}</p>
+                                </div>
+                            </div>
+                        );
+                    })}
                 </div>
             </div>
             </>
@@ -48,4 +39,8 @@ class Notes extends React.Component {
     }
 }
 
-export default Notes
+function mapStateToProps(globalState) {
+    return { patientDetails: globalState.patientDetails }
+}
+
+export default connect(mapStateToProps)(Notes)

@@ -1,7 +1,10 @@
 import React from 'react'
+import { connect } from "react-redux"
 
 class Profile extends React.Component {
     render() {
+        const p = this.props.patientDetails
+
         return (
             <>
             <div className="d-flex flex-row-reverse">
@@ -14,23 +17,19 @@ class Profile extends React.Component {
                     <tbody>
                         <tr>
                         <td className="text-muted">Date of birth</td>
-                        <td className="font-weight-bold text-right">9 March, 1940</td>
-                        </tr>
-                        <tr>
-                        <td className="text-muted">Age</td>
-                        <td className="font-weight-bold text-right">80 years old</td>
+                        <td className="font-weight-bold text-right">{p.birthdate}</td>
                         </tr>
                         <tr>
                         <td className="text-muted">Gender</td>
-                        <td className="font-weight-bold text-right">Male</td>
+                        <td className="font-weight-bold text-right">{p.gender}</td>
                         </tr>
                         <tr>
-                        <td className="text-muted">Unit No.</td>
-                        <td className="font-weight-bold text-right">237</td>
+                        <td className="text-muted">Address</td>
+                        <td className="font-weight-bold text-right">{p.address}</td>
                         </tr>
                         <tr>
                         <td className="text-muted">Phone</td>
-                        <td className="font-weight-bold text-right">555-1235422</td>
+                        <td className="font-weight-bold text-right">{p.phone}</td>
                         </tr>
                     </tbody>
                 </table>
@@ -39,13 +38,13 @@ class Profile extends React.Component {
                         <div className="col">
                             <div className="form-group">
                                 <label htmlFor="firstName">First Name</label>
-                                <input type="text" name="firstName"  className="form-control my-input" id="firstName" placeholder="Title"/>
+                                <input type="text" name="firstName"  className="form-control my-input" id="firstName" placeholder={p.firstName}/>
                             </div>
                         </div>
                         <div className="col">
                             <div className="form-group">
                                 <label htmlFor="lastName">Last Name</label>
-                                <input type="text" name="lastName"  className="form-control my-input" id="lastName" placeholder="Title"/>
+                                <input type="text" name="lastName"  className="form-control my-input" id="lastName" placeholder={p.lastName}/>
                             </div>
                         </div> 
                     </div>
@@ -53,7 +52,7 @@ class Profile extends React.Component {
                         <div className="col-md-6">
                             <div className="form-group">
                                 <label htmlFor="nickName">Nickname</label>
-                                <input type="text" name="nickName"  className="form-control my-input" id="nickName" placeholder="Title"/>
+                                <input type="text" name="nickName"  className="form-control my-input" id="nickName" placeholder={p.nickName}/>
                             </div>
                         </div> 
                     </div>
@@ -61,31 +60,23 @@ class Profile extends React.Component {
                         <div className="col">
                             <div className="form-group">
                                 <label htmlFor="name">Date of birth</label>
-                                <input type="text" name="name"  className="form-control my-input" id="firstName" placeholder="Title"/>
+                                <input type="text" name="birthdate"  className="form-control my-input" id="birthdate" placeholder={p.birthdate}/>
                             </div>
                         </div>
                         <div className="col">
                             <div className="form-group">
-                                <label htmlFor="name">Age</label>
-                                <input type="text" name="name"  className="form-control my-input" id="firstName" placeholder="Title"/>
-                            </div>
-                        </div> 
-                    </div>
-                    <div className="row">
-                        <div className="col-md-6">
-                            <div className="form-group">
                                 <label htmlFor="name">Gender</label>
-                                <input type="text" name="name"  className="form-control my-input" id="firstName" placeholder="Title"/>
+                                <input type="text" name="gender"  className="form-control my-input" id="gender" placeholder={p.gender}/>
                             </div>
                         </div> 
                     </div>
                     <div className="form-group">
                         <label htmlFor="name">Address</label>
-                        <input type="text" name="name"  className="form-control my-input" id="firstName" placeholder="Title"/>
+                        <input type="text" name="address"  className="form-control my-input" id="address" placeholder={p.address}/>
                     </div>
                     <div className="form-group">
                         <label htmlFor="name">Phone</label>
-                        <input type="text" name="name"  className="form-control my-input" id="firstName" placeholder="Title"/>
+                        <input type="text" name="phone"  className="form-control my-input" id="phone" placeholder={p.phone}/>
                     </div>
                     <div className="text-center ">
                         <button type="submit" className="btn btn-theme btn-block send-button tx-tfm">Save Changes</button>
@@ -97,4 +88,8 @@ class Profile extends React.Component {
     }
 }
 
-export default Profile
+function mapStateToProps(globalState) {
+    return { patientDetails: globalState.patientDetails }
+}
+
+export default connect(mapStateToProps)(Profile)

@@ -43,7 +43,7 @@ class Sidebar extends React.Component {
 }
 
 function mapStateToProps(globalState) {
-    return { patients: globalState.patients };
-  }
-  
-  export default connect(mapStateToProps)(Sidebar);
+    return { patients: globalState.patients }
+}
+
+export default connect(mapStateToProps)(Sidebar)

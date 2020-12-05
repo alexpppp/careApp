@@ -1,21 +1,28 @@
 import React from 'react'
+import { connect } from "react-redux"
 import Profile from './Profile'
 import Notes from './Notes'
 
 class Main extends React.Component {
     render() {
+        const p = this.props.patientDetails
+
         return (
             <>
             <div id="page-content-wrapper">
                 <div id="page-content-inner" className="d-flex flex-column">
                     <div id="patient-header" className="d-flex flex-row">
-                        <div className="p-2">
-                            <img alt="" src="#" className="rounded-circle"/>
-                        </div>
-                        <div className="p-2">
-                            <h1 className="mt-4">Brendon Rogers</h1>
-                            <h4 className="text-muted">Brendo</h4>
-                        </div>
+                        {p && (
+                            <>
+                                <div className="p-2">
+                                    <img alt={p.nickname} src={p.img} className="rounded-circle"/>
+                                </div>
+                                <div className="p-2">
+                                    <h1 className="mt-4">{p.firstName} {p.lastName}</h1>
+                                    <h4 className="text-muted">{p.nickname}</h4>
+                                </div>
+                            </>
+                        )}
                     </div>
                     <div id="patient-body" className="col-md-8 p-2">
                         <ul className="nav nav-tabs mt-2 mb-5" id="myTab" role="tablist">
@@ -42,4 +49,8 @@ class Main extends React.Component {
     }
 }
 
-export default Main
+function mapStateToProps(globalState) {
+    return { patientDetails: globalState.patientDetails }
+}
+
+export default connect(mapStateToProps)(Main)

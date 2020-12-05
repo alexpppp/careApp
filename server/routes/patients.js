@@ -42,6 +42,7 @@ function getPatientAndNotes(req, res) {
   const id = req.params.id;
   return getPatientById(id).then((patient) => {
     return getPatientNotes(id).then((notes) => {
+
       const sanitized = {
         id: patient.id,
         firstName: patient.first_name,
@@ -51,7 +52,7 @@ function getPatientAndNotes(req, res) {
         birthdate: patient.birthdate,
         gender: patient.gender,
         phone: patient.phone,
-        address: patient.Address,
+        address: patient.address,
         notes: notes.map((note) => {
           return {
             id: note.id,
