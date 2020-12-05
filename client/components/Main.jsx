@@ -2,8 +2,8 @@ import React from 'react'
 import { connect } from "react-redux"
 import Profile from './Profile'
 import Notes from './Notes'
-import { apiAddPatient, apiGetPatientById } from '../apis'
-import { receivePatient } from '../actions'
+import { apiAddPatient, apiGetPatientById, apiGetAllPatients } from '../apis'
+import { receivePatient, receivePatients } from '../actions'
 
 class Main extends React.Component {
     state = {
@@ -29,6 +29,10 @@ class Main extends React.Component {
             apiGetPatientById(id).then((patient) =>
                 this.props.dispatch(receivePatient(patient)))
             })
+        // Also update sidebar list
+        apiGetAllPatients().then((patients) =>
+          this.props.dispatch(receivePatients(patients))
+        )
     }
 
     render() {

@@ -20,7 +20,19 @@ class Profile extends React.Component {
     }
 
     toggleForm = () => {
-        this.setState({editing: !this.state.editing})
+        this.setState({
+            editing: !this.state.editing,
+            form: {
+                img: this.props.patientDetails.img,
+                firstName: this.props.patientDetails.firstName,
+                lastName: this.props.patientDetails.lastName,
+                nickname: this.props.patientDetails.nickname,
+                birthdate: this.props.patientDetails.birthdate,
+                gender: this.props.patientDetails.gender,
+                address: this.props.patientDetails.address,
+                phone: this.props.patientDetails.phone
+        }
+    })
     }
 
     handleChange = (e) => {
@@ -36,13 +48,14 @@ class Profile extends React.Component {
         const id = this.props.patientDetails.id
         apiUpdatePatient(id, entry).then(() => {
             apiGetPatientById(id).then((patient) =>
-                this.props.dispatch(receivePatient(patient)))
-            })
-        this.toggleForm()
+                this.props.dispatch(receivePatient(patient))
+            )
+        })
         // Also update sidebar list
         apiGetAllPatients().then((patients) =>
           this.props.dispatch(receivePatients(patients))
         )
+        this.toggleForm()
     }
     
     render() {
@@ -52,7 +65,7 @@ class Profile extends React.Component {
             <>
             <div className="d-flex flex-row-reverse">
                 <div className="p-2">
-                    <button className="float-right btn btn-theme btn-sm" onClick={() => this.toggleForm()}>{this.state.editing ? <i className="fas fa-times"></i> : <><i className="fas fa-edit"></i> Update</>}</button>
+                    <button className="float-right btn btn-theme btn-sm" onClick={() => this.toggleForm()}>{this.state.editing ? <><i className="fas fa-times"></i> Cancel</>: <><i className="fas fa-edit"></i> Update</>}</button>
                 </div>
             </div> 
             {this.state.editing ?

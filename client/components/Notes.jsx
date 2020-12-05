@@ -1,7 +1,36 @@
 import React from 'react'
 import { connect } from "react-redux"
+import { apiAddNote, apiGetPatientById } from '../apis'
+import { receivePatient } from '../actions'
 
 class Notes extends React.Component {
+    state = {
+        title: '',
+        content: '',
+    }
+
+    handleChange = (e) => {
+        const name = e.target.name
+        this.setState({[name]: e.target.value})
+    }
+    
+    handleSubmit = (e) => {
+        e.preventDefault()
+        const entry = {...this.state,
+            authorId: this.props.auth.user.id,
+            patientId: this.props.patientDetails.id
+        }
+        const id = this.props.patientDetails.id
+        apiAddNote(entry).then(() => {
+            apiGetPatientById(id).then((patient) =>
+                this.props.dispatch(receivePatient(patient)))
+            })
+        this.setState({ 
+            title: '',
+            content: '',
+         })
+    }
+
     render() {
         return (
             <>

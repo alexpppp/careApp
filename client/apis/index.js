@@ -43,6 +43,14 @@ export function apiUpdatePatient(id, entry) {
         .then((res) => res.body);
   }
 
+  export function apiAddNote(entry) {
+    return request
+        .post(apiUrl + "/addnote")
+        .set(prepHeaders())
+        .send(entry)
+        .then((res) => res.body);
+  }
+
   // Global error handler for front end api's
 function errorHandler(err) {
     console.error(err);

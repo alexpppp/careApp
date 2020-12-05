@@ -14,6 +14,10 @@ class Sidebar extends React.Component {
           this.props.dispatch(receivePatient(patient))
         );
     }
+    clearPatientDetails = () => {
+        const patient = {}
+        this.props.dispatch(receivePatient(patient))
+    }
     render() {
         return (
             <>
@@ -22,13 +26,13 @@ class Sidebar extends React.Component {
                 <i className="fas fa-universal-access fa-2x"></i>
                 </div>
                 <div className="sidebar-heading">
-                    <h2 id="sidebar-title">Patients</h2><a href="#" onClick={() => this.launchModal()} className="float-right btn btn-theme btn-sm btn-circle"><i className="fas fa-plus"></i></a>
+                    <h2 id="sidebar-title">Patients</h2><a href="#" onClick={() => this.clearPatientDetails()} className="float-right btn btn-theme btn-sm btn-circle"><i className="fas fa-plus"></i></a>
                 </div>
                 <form>
                     <input className="form-control form-control-borderless" style={{fontFamily: "Arial, FontAwesome"}} type="search" placeholder="&#xF002; Search"/>
                 </form>
                 <div className="sidebar-inner list-group">
-                {this.props.patients.map((p) => {
+                {[...this.props.patients].reverse().map((p) => {
                     return (
                         <div key={p.id}>
                             <a href="#" onClick={() => this.fetchPatient(p.id)} className="list-group-item bg-peachy"><img alt={p.nickname} src={p.img} className="rounded-circle"/>{p.firstName} {p.lastName}</a>
