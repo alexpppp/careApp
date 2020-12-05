@@ -1,5 +1,6 @@
 const path = require('path')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
+const htmlWebpack = require('html-webpack-plugin')
 
 module.exports = {
   entry: [

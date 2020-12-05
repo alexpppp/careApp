@@ -1,60 +1,155 @@
 @charset "utf-8";
 
 // Import a Google Font
-@import url('https://fonts.googleapis.com/css?family=Lato:400,700');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;500;700&display=swap');
 
 // Import custom variables and Bulma overides
 @import "./variables.scss";
-
 @import "../../node_modules/bootstrap/dist/css/bootstrap.min.css";
 
-// Fix for transparent background on active nav items
-a.navbar-item:focus, a.navbar-item:focus-within, a.navbar-item:hover, a.navbar-item.is-active, .navbar-link:focus, .navbar-link:focus-within, .navbar-link:hover, .navbar-link.is-active {
-  background-color: inherit;
+html {
+	font-family: 'Montserrat', sans-serif;
 }
-
-
+h1 {
+	font-weight: 300;
+}
+h2 {
+	font-weight: 300;
+}
+h3 {
+	font-weight: 300;
+}
+h4 {
+	font-weight: 300;
+}
+h5 {
+	font-weight: 300;
+}
+h6 {
+	font-weight: 300;
+}
+.btn-theme {
+	color: #fff;
+	background-color: #353285;
+	border-color: #353285;
+	&:hover {
+		color: #fff;
+		background-color: #2E2B72;
+		border-color: #1E1D4C;
+	}
+}
+.btn-circle.btn-sm {
+	border-radius: 50%;
+}
 #wrapper {
-  overflow-x: hidden;
+	overflow-x: hidden;
 }
+.bg-peachy {
+	background-color: #FCD6C3;
+}
+
+/*********** SIDEBAR **********/
 
 #sidebar-wrapper {
-min-height: 100vh;
-margin-left: -15rem;
--webkit-transition: margin .25s ease-out;
--moz-transition: margin .25s ease-out;
--o-transition: margin .25s ease-out;
-transition: margin .25s ease-out;
+	padding: 1rem;
+	min-height: 100vh;
+	-webkit-transition: margin .25s ease-out;
+	-moz-transition: margin .25s ease-out;
+	-o-transition: margin .25s ease-out;
+	transition: margin .25s ease-out;
+	position: fixed;
+	overflow-y: scroll;
+	top: 0;
+	bottom: 0;
+	border-radius: 0px 0px 0px 0px;
+	.sidebar-heading {
+		padding: 1.25rem 0.5rem;
+		font-size: 1.2rem;
+		border-bottom: 1px #fff solid;
+		margin: 0.5rem;
+	}
+	.list-group {
+		width: 15rem;
+	}
+	form {
+		margin: 1rem 0.5rem;
+		input {
+			color: #353285;
+			background-color: #F2DACF;
+			border: none;
+		}
+	}
+}
+#wrapper.toggled {
+	#sidebar-wrapper {
+		margin-left: 0;
+	}
+}
+#logo {
+	color: #fff;
+}
+#sidebar-title {
+	display: inline;
+}
+input.empty {
+	font-family: FontAwesome;
+	font-style: normal;
+	font-weight: normal;
+	text-decoration: inherit;
+}
+.list-group-item {
+	border: none;
+	color: #1B0300;
+	font-weight: 400;
+	img {
+		border: 2px #fff solid;
+		margin-right: 1rem;
+		height: 50px;
+		width: 50px;
+	}
+	&:hover {
+		background-color: #353285;
+		color: #fff;
+		border-radius: 40px 10px 10px 40px;
+		box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.3);
+	}
 }
 
-#sidebar-wrapper .sidebar-heading {
-padding: 0.875rem 1.25rem;
-font-size: 1.2rem;
-}
-
-#sidebar-wrapper .list-group {
-width: 15rem;
-}
+/*********** PAGE CONTENT **********/
 
 #page-content-wrapper {
-min-width: 100vw;
+	margin-left: 300px;
+	border-radius: 35px 0px 0px 35px;
+	background-color: #fff;
+	height: 100vh;
 }
-
-#wrapper.toggled #sidebar-wrapper {
-margin-left: 0;
+#page-content-wrapper.toggled {
+	margin-left: 50px;
 }
-
+#page-content-inner {
+	padding: 2rem 3rem;
+	overflow-y: auto;
+	height: 100%;
+	position: relative;
+}
+#patient-header {
+	img {
+		height: 150px;
+		width: 150px;
+	}
+}
 @media (min-width: 768px) {
-#sidebar-wrapper {
-  margin-left: 0;
+	#sidebar-wrapper {
+		margin-left: 0;
+	}
+	#page-content-wrapper {
+		min-width: 0;
+		width: 100%;
+	}
+	#wrapper.toggled {
+		#sidebar-wrapper {
+			margin-left: -16rem;
+		}
+	}
 }
 
-#page-content-wrapper {
-  min-width: 0;
-  width: 100%;
-}
-
-#wrapper.toggled #sidebar-wrapper {
-  margin-left: -15rem;
-}
-}

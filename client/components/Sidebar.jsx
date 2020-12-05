@@ -4,13 +4,20 @@ class Sidebar extends React.Component {
     render() {
         return (
             <>
-                <div className="bg-light border-right" id="sidebar-wrapper">
-                    <div className="sidebar-heading">Patients </div>
-                    <div className="list-group list-group-flush">
-                        <a href="#" className="list-group-item list-group-item-action bg-light">Name1 </a>
-                        <a href="#" className="list-group-item list-group-item-action bg-light">Name 2</a>
-                    </div>
+            <div id="sidebar-wrapper">
+                <div id="logo">
+                <i className="fas fa-universal-access fa-2x"></i>
                 </div>
+                <div className="sidebar-heading">
+                    <h2 id="sidebar-title">Patients</h2><button className="float-right btn btn-theme btn-sm btn-circle"><i className="fas fa-plus"></i></button>
+                </div>
+                <form>
+                    <input className="form-control form-control-borderless" style={{fontFamily: "Arial, FontAwesome"}} type="search" placeholder="&#xF002; Search"/>
+                </form>
+                <div className="sidebar-inner list-group">
+                    <a href="#" className="list-group-item bg-peachy"><img alt="" src="#" className="rounded-circle"/> Name LastName</a>
+                </div>
+            </div>
             </>
         )
     }

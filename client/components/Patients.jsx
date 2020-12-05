@@ -1,18 +1,15 @@
 import React from 'react'
 import Sidebar from './Sidebar'
+import Main from './Main'
 
 class Patients extends React.Component {
     render() {
         return (
             <>
-                <div className="d-flex" id="wrapper">
-                    <Sidebar />
-                    <div id="page-content-wrapper">
-                        <div className="container-fluid">
-                            <h1 className="mt-4">Main</h1>
-                        </div>
-                    </div>
-                </div>
+            <div className="d-flex bg-peachy" id="wrapper">
+                <Sidebar />
+                <Main />
+            </div>
             </>
         )
     }
