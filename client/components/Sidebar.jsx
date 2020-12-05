@@ -1,6 +1,14 @@
 import React from 'react'
+import { connect } from "react-redux";
+import { apiGetAllPatients } from '../apis'
+import { receivePatients } from '../actions'
 
 class Sidebar extends React.Component {
+    componentDidMount() {
+        apiGetAllPatients().then((patients) =>
+          this.props.dispatch(receivePatients(patients))
+        );
+      }
     render() {
         return (
             <>
@@ -23,4 +31,8 @@ class Sidebar extends React.Component {
     }
 }
 
-export default Sidebar
+function mapStateToProps(globalState) {
+    return { auth: globalState.auth, patients: globalState.patients };
+  }
+  
+  export default connect(mapStateToProps)(Sidebar);
